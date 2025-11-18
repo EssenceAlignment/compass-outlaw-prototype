@@ -85,7 +85,7 @@ const Auth = () => {
               <Scale className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <CardTitle>MANUS.IM PC 850 Utility</CardTitle>
+              <CardTitle>Compass Outlaw</CardTitle>
               <CardDescription>Professional Filing Package Generator v12</CardDescription>
             </div>
           </div>
