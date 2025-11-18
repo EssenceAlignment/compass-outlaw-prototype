@@ -1,13 +1,14 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
+import { z } from 'zod';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-interface ExecuteFormattingRequest {
-  jobId: string;
-}
+const executeFormattingRequestSchema = z.object({
+  jobId: z.string().uuid(),
+});
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -45,14 +46,25 @@ Deno.serve(async (req) => {
       );
     }
 
-    const { jobId }: ExecuteFormattingRequest = await req.json();
+    const requestBody = await req.json();
 
-    if (!jobId) {
+    // Validate request schema
+    const validationResult = executeFormattingRequestSchema.safeParse(requestBody);
+    if (!validationResult.success) {
+      console.error('Validation error:', validationResult.error.issues);
       return new Response(
-        JSON.stringify({ error: 'Job ID is required' }),
+        JSON.stringify({ 
+          error: 'Invalid request',
+          details: validationResult.error.issues.map(issue => ({
+            field: issue.path.join('.'),
+            message: issue.message,
+          }))
+        }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
+
+    const { jobId } = validationResult.data;
 
     console.log(`Executing Docker formatting for job ${jobId}`);
 
