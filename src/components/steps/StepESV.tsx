@@ -89,10 +89,10 @@ export const StepESV = ({ onNext, onBack, data }: StepESVProps) => {
       <Card className="p-6 shadow-lg">
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="text-2xl font-montserrat font-bold tracking-tight text-foreground mb-2">
               Event Sequence Verification (ESV)
             </h2>
-            <p className="text-muted-foreground">
+            <p className="font-montserrat font-light text-muted-foreground">
               Enter all relevant events in your case. The system will verify chronological order and
               flag any date inconsistencies.
             </p>

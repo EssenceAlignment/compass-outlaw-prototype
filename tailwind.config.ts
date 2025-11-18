@@ -13,6 +13,14 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'montserrat': ['Montserrat', 'system-ui', '-apple-system', 'sans-serif'],
+        'brand': ['Montserrat', 'system-ui', '-apple-system', 'sans-serif'],
+      },
+      letterSpacing: {
+        'brand': '0.03em',
+        'brand-wide': '0.05em',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
