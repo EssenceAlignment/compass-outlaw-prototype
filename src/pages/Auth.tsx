@@ -80,7 +80,7 @@ const Auth = () => {
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-4">
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center gap-3">
             <div className="rounded-lg bg-primary p-2">
               <Scale className="h-6 w-6 text-primary-foreground" />
             </div>
