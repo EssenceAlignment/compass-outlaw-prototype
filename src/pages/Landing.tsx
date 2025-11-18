@@ -14,18 +14,13 @@ const Landing = () => {
   }, [user, navigate]);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <img 
         src={compassOutlawHomepage} 
         alt="Compass Outlaw - Justice Is No Longer For Sale" 
-        className="max-w-4xl w-full h-auto mb-8"
-      />
-      <button
+        className="max-w-4xl w-full h-auto cursor-pointer animate-fade-in hover:scale-[1.02] transition-transform duration-300"
         onClick={() => navigate("/auth")}
-        className="font-montserrat font-extrabold text-2xl tracking-brand uppercase text-primary hover:text-primary/80 transition-colors"
-      >
-        ENTER
-      </button>
+      />
     </div>
   );
 };
