@@ -14,7 +14,7 @@ export const Header = () => {
               <Scale className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">MANUS.IM PC 850 Utility</h1>
+              <h1 className="text-2xl font-bold text-foreground">Compass Outlaw</h1>
               <p className="text-sm text-muted-foreground">
                 Professional Filing Package Generator v12
               </p>
