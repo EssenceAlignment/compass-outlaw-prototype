@@ -1,1 +1,10 @@
 project_id = "gushkluejsjzmwafjzch"
+
+[functions.analyze-crc-compliance]
+verify_jwt = true
+
+[functions.create-generation-job]
+verify_jwt = true
+
+[functions.execute-docker-formatting]
+verify_jwt = true
