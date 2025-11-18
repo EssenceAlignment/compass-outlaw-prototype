@@ -23,7 +23,7 @@ export const Header = () => {
                 Compass Outlaw
               </h1>
               <p className="text-sm font-montserrat font-light tracking-wide text-muted-foreground">
-                Professional Filing Package Generator v12
+                E-Filing Package Generator
               </p>
             </div>
           </div>
