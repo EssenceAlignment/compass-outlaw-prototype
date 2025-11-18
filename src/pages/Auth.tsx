@@ -86,7 +86,6 @@ const Auth = () => {
             </div>
             <div>
               <CardTitle>Compass Outlaw</CardTitle>
-              <CardDescription>Professional Filing Package Generator v12</CardDescription>
             </div>
           </div>
         </CardHeader>
