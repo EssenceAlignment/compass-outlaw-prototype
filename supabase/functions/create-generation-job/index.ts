@@ -1,48 +1,51 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
+import { z } from 'zod';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-interface CreateJobRequest {
-  filingData: {
-    caseInfo: {
-      courtName: string;
-      county: string;
-      caseNumber: string;
-      judgeName: string;
-    };
-    petitioner: {
-      name: string;
-      address: string;
-      city: string;
-      state: string;
-      zip: string;
-      phone: string;
-      email: string;
-    };
-    events: Array<{
-      id: string;
-      date: string;
-      description: string;
-    }>;
-    petitionBody: string;
-    exhibits: Array<{
-      id: string;
-      label: string;
-      description: string;
-      fileUrl: string;
-      fileName: string;
-    }>;
-    officialForms: Array<{
-      id: string;
-      formNumber: string;
-      formName: string;
-      fileUrl: string;
-    }>;
-  };
-}
+const filingDataSchema = z.object({
+  caseInfo: z.object({
+    courtName: z.string().min(1).max(200),
+    county: z.string().min(1).max(100),
+    caseNumber: z.string().min(1).max(50),
+    judgeName: z.string().min(1).max(200),
+  }),
+  petitioner: z.object({
+    name: z.string().min(1).max(200),
+    address: z.string().min(1).max(300),
+    city: z.string().min(1).max(100),
+    state: z.string().min(2).max(2),
+    zip: z.string().regex(/^\d{5}(-\d{4})?$/),
+    phone: z.string().regex(/^\d{10}$/),
+    email: z.string().email().max(255),
+  }),
+  events: z.array(z.object({
+    id: z.string(),
+    date: z.string().datetime(),
+    description: z.string().min(1).max(1000),
+  })).max(100),
+  petitionBody: z.string().min(1).max(50000),
+  exhibits: z.array(z.object({
+    id: z.string(),
+    label: z.string().max(50),
+    description: z.string().max(500),
+    fileUrl: z.string().url(),
+    fileName: z.string().max(255),
+  })).max(50),
+  officialForms: z.array(z.object({
+    id: z.string(),
+    formNumber: z.string().max(50),
+    formName: z.string().max(200),
+    fileUrl: z.string().url(),
+  })).max(20),
+});
+
+const createJobRequestSchema = z.object({
+  filingData: filingDataSchema,
+});
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -77,15 +80,25 @@ Deno.serve(async (req) => {
       );
     }
 
-    const { filingData }: CreateJobRequest = await req.json();
+    const requestBody = await req.json();
 
-    // Validate required fields
-    if (!filingData || !filingData.caseInfo || !filingData.petitioner || !filingData.petitionBody) {
+    // Validate request schema
+    const validationResult = createJobRequestSchema.safeParse(requestBody);
+    if (!validationResult.success) {
+      console.error('Validation error:', validationResult.error.issues);
       return new Response(
-        JSON.stringify({ error: 'Missing required filing data fields' }),
+        JSON.stringify({ 
+          error: 'Invalid filing data',
+          details: validationResult.error.issues.map(issue => ({
+            field: issue.path.join('.'),
+            message: issue.message,
+          }))
+        }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
+
+    const { filingData } = validationResult.data;
 
     console.log(`Creating generation job for user ${user.id}`);
 

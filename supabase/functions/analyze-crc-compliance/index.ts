@@ -1,11 +1,13 @@
+import { z } from 'zod';
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-interface AnalysisRequest {
-  petitionText: string;
-}
+const analysisRequestSchema = z.object({
+  petitionText: z.string().min(1).max(100000),
+});
 
 interface FormattingSuggestion {
   section: string;
@@ -25,14 +27,25 @@ Deno.serve(async (req) => {
       throw new Error('GEMINI_API_KEY not configured');
     }
 
-    const { petitionText }: AnalysisRequest = await req.json();
+    const requestBody = await req.json();
 
-    if (!petitionText || petitionText.trim().length === 0) {
+    // Validate request schema
+    const validationResult = analysisRequestSchema.safeParse(requestBody);
+    if (!validationResult.success) {
+      console.error('Validation error:', validationResult.error.issues);
       return new Response(
-        JSON.stringify({ error: 'Petition text is required' }),
+        JSON.stringify({ 
+          error: 'Invalid request',
+          details: validationResult.error.issues.map(issue => ({
+            field: issue.path.join('.'),
+            message: issue.message,
+          }))
+        }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
+
+    const { petitionText } = validationResult.data;
 
     console.log('Analyzing petition text for CRC 2.111 compliance...');
 
