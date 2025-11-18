@@ -136,10 +136,10 @@ export const StepCRC = ({ onNext, onBack, data }: StepCRCProps) => {
       <Card className="p-6 shadow-lg">
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="text-2xl font-montserrat font-bold tracking-tight text-foreground mb-2">
               CRC 2.111 Compliance Check
             </h2>
-            <p className="text-muted-foreground">
+            <p className="font-montserrat font-light text-muted-foreground">
               Verify that your petition meets California Rules of Court formatting requirements.
             </p>
           </div>

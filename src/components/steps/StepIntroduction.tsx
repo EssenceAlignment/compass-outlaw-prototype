@@ -13,10 +13,10 @@ export const StepIntroduction = ({ onNext }: StepIntroductionProps) => {
       <Card className="p-8 shadow-lg">
         <div className="space-y-6">
           <div>
-            <h2 className="text-3xl font-bold text-foreground mb-2">
+            <h2 className="text-3xl font-montserrat font-bold tracking-tight text-foreground mb-2">
               PC 850 Petition Filing Utility
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg font-montserrat font-light leading-relaxed text-muted-foreground">
               Professional-grade formatting and packaging system for California Penal Code § 850 Petitions
             </p>
           </div>
@@ -33,52 +33,33 @@ export const StepIntroduction = ({ onNext }: StepIntroductionProps) => {
           <div className="grid md:grid-cols-3 gap-4">
             <Card className="p-4 border-accent/20 bg-accent/5">
               <FileText className="h-8 w-8 text-accent mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">Document Preparation</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-montserrat font-semibold text-foreground mb-2">Document Preparation</h3>
+              <p className="text-sm font-montserrat font-light text-muted-foreground">
                 Format your petition according to California Rules of Court 2.111 standards
               </p>
             </Card>
 
             <Card className="p-4 border-accent/20 bg-accent/5">
               <CheckCircle className="h-8 w-8 text-accent mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">Compliance Verification</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-montserrat font-semibold text-foreground mb-2">Compliance Verification</h3>
+              <p className="text-sm font-montserrat font-light text-muted-foreground">
                 Automated preflight checks ensure your filing meets all technical requirements
               </p>
             </Card>
 
             <Card className="p-4 border-accent/20 bg-accent/5">
               <Shield className="h-8 w-8 text-accent mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">Red-Team Validation</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-montserrat font-semibold text-foreground mb-2">Red-Team Validation</h3>
+              <p className="text-sm font-montserrat font-light text-muted-foreground">
                 Final validation gate catches errors before e-filing submission
               </p>
             </Card>
           </div>
 
           <div className="space-y-3 pt-4">
-            <h3 className="font-semibold text-foreground">This utility will guide you through:</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-0.5 text-legal-success flex-shrink-0" />
-                <span>Event Sequence Verification (ESV) - chronological date validation</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-0.5 text-legal-success flex-shrink-0" />
-                <span>CRC 2.111 compliance - formatting, margins, pagination standards</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-0.5 text-legal-success flex-shrink-0" />
-                <span>Exhibit processing - proper bookmarking and PDF/A conversion</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-0.5 text-legal-success flex-shrink-0" />
-                <span>Preflight checklist - comprehensive package verification</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-0.5 text-legal-success flex-shrink-0" />
-                <span>Final PDF package generation ready for e-filing portal upload</span>
-              </li>
+            <h3 className="font-montserrat font-semibold text-foreground">This utility will guide you through:</h3>
+            <ul className="space-y-2 text-sm font-montserrat font-light text-muted-foreground">
+...
             </ul>
           </div>
 

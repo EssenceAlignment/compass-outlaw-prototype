@@ -81,10 +81,10 @@ export const StepExhibits = ({ onNext, onBack, data }: StepExhibitsProps) => {
       <Card className="p-6 shadow-lg">
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="text-2xl font-montserrat font-bold tracking-tight text-foreground mb-2">
               Exhibit Processing
             </h2>
-            <p className="text-muted-foreground">
+            <p className="font-montserrat font-light text-muted-foreground">
               Upload supporting documents as exhibits. Each will be properly bookmarked and
               formatted for e-filing compliance.
             </p>
@@ -92,7 +92,7 @@ export const StepExhibits = ({ onNext, onBack, data }: StepExhibitsProps) => {
 
           <Alert className="border-legal-info bg-legal-info/5">
             <FileText className="h-5 w-5 text-legal-info" />
-            <AlertDescription className="text-sm">
+            <AlertDescription className="text-sm font-montserrat font-light">
               Exhibits must be in PDF format. The system will automatically bookmark each exhibit
               and convert to PDF/A format for archival compliance.
             </AlertDescription>
